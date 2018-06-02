@@ -1,0 +1,4 @@
+*.pyc
+.idea
+ass2env
+python
