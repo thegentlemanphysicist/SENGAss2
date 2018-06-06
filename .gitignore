@@ -2,3 +2,4 @@
 .idea
 ass2env
 python
+*.sh.save
