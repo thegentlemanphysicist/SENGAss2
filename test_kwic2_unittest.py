@@ -67,7 +67,7 @@ class TestKwic2(unittest.TestCase):
 
     def test_splitLineIntoTriple2(self):
         # Test the first element of a line
-        self.assertEqual(self.kwic2.splitLineIntoTriple(0,0), [ '' ,'the', 'rain in spain falls'], "We should get a triple of this form")
+        self.assertEqual(self.kwic2.splitLineIntoTriple(0,0), [ '' ,'the', 'rain in spain'], "We should get a triple of this form")
 
     def test_splitLineIntoTriple3(self):
         # Test the last element of a line
@@ -81,6 +81,9 @@ class TestKwic2(unittest.TestCase):
         self.assertEqual(self.kwic2.printFormattedTriple(["happy", "birthday", "mr kennedy"]),
                          "                       happy BIRTHDAY mr kennedy")
 
+    def test_printFormattedTriple3(self):
+        self.assertEqual(self.kwic2.printFormattedTriple(["happy", "birthday", "01234567890 12345678901234567890"]),
+                         "                       happy BIRTHDAY 01234567890")
 
 if __name__ == "__main__":
     unittest.main()

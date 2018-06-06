@@ -78,10 +78,15 @@ def splitLineIntoTriple(indexOfLine, indexOfWord):
 
     # Cut off the postfix word that overflows
     lenWord = len(returnTriple[1])
-    if ( (len(returnTriple[2])+ lenWord > 31) and returnTriple[2][30-lenWord] != ' '
-         and returnTriple[2][31-lenWord] != ' '   ):
-        while len(returnTriple[2])+lenWord > 29 :
+    # print("\nThe length of the indexed word is:" ,lenWord)
+    # print("\nThe length of the postfix string is:" ,len(returnTriple[2]))
+
+    if ( (len(returnTriple[2])+ lenWord) > 31 and returnTriple[2][30-lenWord] != ' '
+         and returnTriple[2][31-lenWord] != ' ' ):
+        # print("\n This was called, the string is too long")
+        while len(returnTriple[2])+lenWord > 31 :
             returnTriple[2] = returnTriple[2].rsplit(' ',1)[0]
+            # print("The line is split into", returnTriple[2])
 
     return returnTriple
 
@@ -98,10 +103,10 @@ def printFormattedTriple(triple):
         returnString = ''.join([returnString, triple[0][-19:]," ", triple[1].upper()])
 
     #the last collum cannot go past 60
-    if (lengthRight <= (29 - lengthIndexWord)) and (lengthRight>0) :
+    if (lengthRight <= (30 - lengthIndexWord)) and (lengthRight>0) :
         returnString = " ".join([returnString, triple[2]])
     else:
-        returnString = " ".join([returnString, triple[2][:(29-lengthIndexWord)]])
+        returnString = " ".join([returnString, triple[2][:(30-lengthIndexWord)]])
     # print("\nThe string is:",returnString)
     return returnString.rstrip()
 
@@ -119,13 +124,6 @@ def main():
         nextWordToBeIndexed = getLowestNonIndexedWord(nextWordToBeIndexed[0],nextWordToBeIndexed[1])
 
 
-#     Steps to do
-#DONE       read the lines of text into some arrays
-#DONE       tokenise the stings
-#DONR       find the lowest non indexed word
-#       save that line with the word capitalized
-#       format the line properly
-#       print the final output
 
 
 if __name__ == '__main__':
