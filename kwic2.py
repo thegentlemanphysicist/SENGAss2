@@ -20,7 +20,7 @@ def readInFile():
         else :
             if caseNumber==1:
                 #Fill the list with excluded words
-                excludedWords.append(line.rstrip())
+                excludedWords.append(line.rstrip().upper())
 
             if caseNumber==2:
                 #Fill the list of lines to be indexed
@@ -32,9 +32,9 @@ def compareTo(line1, word1, line2, word2):
     firstWord = lines2BIndexed[line1][word1]
     secondWord = lines2BIndexed[line2][word2]
     returnInt = 0
-    if firstWord < secondWord:
+    if firstWord.upper() < secondWord.upper():
         returnInt = -1
-    elif firstWord > secondWord:
+    elif firstWord.upper() > secondWord.upper():
         returnInt = +1
     elif line1 < line2:
         returnInt = -1
@@ -56,7 +56,7 @@ def getLowestNonIndexedWord(lineIndexPrevWord, wordIndexPrevWord):
 
     for lineIndex, line in enumerate(lines2BIndexed):
         for wordIndex, word in enumerate(line):
-            if word not in excludedWords :
+            if word.upper() not in excludedWords :
                 # If we are reading this in the first time
                 if (indexLowestword[0] == None or (compareTo(lineIndex, wordIndex, indexLowestword[0], indexLowestword[1]) < 0)):
                     # If there is no previous word
