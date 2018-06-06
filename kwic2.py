@@ -81,10 +81,10 @@ def splitLineIntoTriple(indexOfLine, indexOfWord):
     # print("\nThe length of the indexed word is:" ,lenWord)
     # print("\nThe length of the postfix string is:" ,len(returnTriple[2]))
 
-    if ( (len(returnTriple[2])+ lenWord) > 31 and returnTriple[2][30-lenWord] != ' '
-         and returnTriple[2][31-lenWord] != ' ' ):
+    if ( (len(returnTriple[2])+ lenWord) > 30 and returnTriple[2][29-lenWord] != ' '
+         and returnTriple[2][30-lenWord] != ' ' ):
         # print("\n This was called, the string is too long")
-        while len(returnTriple[2])+lenWord > 31 :
+        while len(returnTriple[2])+lenWord > 30 :
             returnTriple[2] = returnTriple[2].rsplit(' ',1)[0]
             # print("The line is split into", returnTriple[2])
 
