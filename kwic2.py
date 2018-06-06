@@ -71,6 +71,18 @@ def splitLineIntoTriple(indexOfLine, indexOfWord):
                      lines2BIndexed[indexOfLine][indexOfWord],
                       (' '.join([x for x in lines2BIndexed[indexOfLine][(indexOfWord+1):] ]))
                       ]
+    # Cut off the prefix word that overflows
+    if ( len(returnTriple[0])>19 and returnTriple[0][-19] != " " and returnTriple[0][-20] != " " ):
+        while len(returnTriple[0])>19:
+            returnTriple[0] = returnTriple[0].split(' ',1)[1]
+
+    # Cut off the postfix word that overflows
+    lenWord = len(returnTriple[1])
+    if ( (len(returnTriple[2])+ lenWord > 31) and returnTriple[2][30-lenWord] != ' '
+         and returnTriple[2][31-lenWord] != ' '   ):
+        while len(returnTriple[2])+lenWord > 29 :
+            returnTriple[2] = returnTriple[2].rsplit(' ',1)[0]
+
     return returnTriple
 
 def printFormattedTriple(triple):
@@ -93,11 +105,17 @@ def printFormattedTriple(triple):
     # print("\nThe string is:",returnString)
     return returnString.rstrip()
 
+
+
+
+
 def main():
     readInFile()
     nextWordToBeIndexed = getLowestNonIndexedWord(None,None)
     while nextWordToBeIndexed[0] != None :
         print(printFormattedTriple(splitLineIntoTriple(nextWordToBeIndexed[0],nextWordToBeIndexed[1])))
+        # print(printFormattedLine(nextWordToBeIndexed[0],nextWordToBeIndexed[1]))
+
         nextWordToBeIndexed = getLowestNonIndexedWord(nextWordToBeIndexed[0],nextWordToBeIndexed[1])
 
 
